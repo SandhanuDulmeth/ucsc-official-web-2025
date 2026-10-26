@@ -105,6 +105,7 @@ Most recurring content changes belong in [`utils/index.js`](utils/index.js).
 | What to update | Where to edit |
 | --- | --- |
 | Navigation links | `navbarLinks` in `utils/index.js` |
+| Blog posts and stories | `data/blogPosts.js` |
 | Areas of activity | `whatweDo` in `utils/index.js` |
 | Timeline entries | `timelineData` in `utils/index.js` |
 | Past events | `pastEvents` in `utils/index.js` |
@@ -136,8 +137,12 @@ app/
   layout.jsx                 Shared layout, font, and site metadata
   page.jsx                   Homepage composition
   previous-officers/page.jsx Previous officers page
+  blog/page.jsx              Blog listing page
+  blog/[slug]/page.jsx       Individual blog post page
 components/                  Website sections and navigation
   helpers/                   Team cards, animations, and transitions
+data/
+  blogPosts.js               Blog posts, tags, and helper queries
 utils/
   index.js                   Content, committee data, and contact details
   lenis.js                   Client-side smooth-scrolling export
@@ -197,6 +202,21 @@ overrides aligned and remove them when upstream peer ranges include ESLint 10.
 
 The current frontend targets modern browsers. Tailwind 4 requires Safari 16.4+,
 Chrome 111+, or Firefox 128+; consider browser support when changing the stack.
+
+## Implementation Notes
+
+### Design
+- **Theme Consistency**: Utilizes the branch design tokens (`--color-primary-blue: #05609A`, `--color-secondary-blue: #234961`, `--color-primary-white: #FAFAFA`, `--color-secondary-white: #EBEBEB`) and the custom local font Raveo (`--font-raveo`).
+- **Visual Interactions**: Blog cards mirror the repository's signature grayscale-to-color hover transitions (`grayscale hover:grayscale-0 duration-500`) and subtle card elevation with primary blue brand accents.
+- **Defensive UI & Responsiveness**: Titles and excerpts use `line-clamp-2` and `line-clamp-3` with full-title tooltips to gracefully handle varying lengths. Fluid CSS grid scales seamlessly from single-column mobile view to 2- and 3-column desktop viewports.
+
+### Performance
+- **Static Site Generation (SSG)**: Statically exported via `generateStaticParams()` at build time with zero server runtime overhead or runtime database latency.
+- **Zero Additional Dependencies**: Pure React 19 and Tailwind CSS 4 implementation utilizing native state for search/filtering, maintaining a minimal bundle footprint.
+- **Image Optimization & Layout Stability**: Featured images are compressed and resized from large camera raw assets (11.6 MB raw PNG reduced to 323 KB high-fidelity asset) and served with `loading="lazy"`, responsive aspect ratios, and explicit sizes to eliminate Cumulative Layout Shift (CLS).
+
+### Improvements (Proposed Next Feature)
+- **Automated RSS & JSON Feed Generation**: An automated feed generator script hooked into the static build process (`public/feed.xml` and `public/feed.json`) enabling IEEE members, campus aggregators, and tech newsreaders to subscribe to branch publications directly.
 
 ## Contact the branch
 

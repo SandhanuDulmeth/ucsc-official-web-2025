@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import gsap from "gsap";
@@ -50,6 +52,11 @@ const TransitionLink = ({ children, href, className, props }) => {
       if (targetElement) {
         // Scroll to the element instead of reloading
         targetElement.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Target element not found on current page; navigate to homepage anchor
+        handleAnimation();
+        await sleep(1000);
+        router.push("/" + href);
       }
     } else {
       // Regular page navigation
