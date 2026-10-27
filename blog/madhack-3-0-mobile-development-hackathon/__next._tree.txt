@@ -1,6 +1,6 @@
-:HL["/_next/static/chunks/29xehshu057ri.css","style"]
+:HL["/_next/static/chunks/1nob0sip6m-o1.css","style"]
 :HL["/_next/static/media/RaveoVF-s.p.2xse2_et5g551.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"madhack-3-0-mobile-development-hackathon","s":[]},"h":96,"c":"$Q3"}]]
 1:[["children",{"s":"blog","h":64,"c":"$Q2"}]]
-0:{"b":"MNGxuhX81W5BtHf1fwolU","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"KJfvmVwxt86sR7C5sVwqL","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
