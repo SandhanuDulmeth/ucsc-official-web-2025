@@ -43,9 +43,9 @@ const rawBlogPosts = [
   {
     id: "2",
     slug: "madhack-3-0-mobile-development-hackathon",
-    title: "MadHack 3.0: Mobile Application Development Hackathon",
-    date: "Archive / TBA",
-    isoDate: "2026-09-01",
+    title: "MADHack 3.0",
+    date: "April 2024",
+    isoDate: "2024-04-01",
     readTime: "1 min read",
     author: {
       name: "IEEE Student Branch of UCSC",
@@ -53,38 +53,38 @@ const rawBlogPosts = [
     category: "Competitions",
     tags: ["Competitions", "Hackathons", "Mobile Dev"],
     image: "/images/past-events/madhack-3.0.jpg",
-    imageAlt: "MadHack 3.0 Mobile Application Development Hackathon",
+    imageAlt: "MADHack 3.0 Mobile Application Development Hackathon",
     description:
-      "Placeholder article for MadHack 3.0. Official event coverage, competition highlights, and finalist details will be updated here.",
+      "MADHack is a mobile app development hackathon and workshop series organized by the IEEE Student Branch of UCSC. It gives university students in Sri Lanka the chance to participate in a mobile app development competition, allowing them to sharpen their skills and learn from experts in the field.",
     featured: false,
     content: [
       {
         type: "paragraph",
-        text: "This is a generic placeholder article for MadHack 3.0, the mobile application development hackathon organized by the IEEE Student Branch of UCSC. Official event coverage, challenge announcements, and team highlights will be published upon conclusion of the event.",
+        text: "The awareness session of MADHACK took place on the 6th of January 2024 with the purpose of bringing about awareness of the event and giving the participants an introduction to the world of mobile app development. The very first workshop for MADHack, the Mobile Application Development Hackathon was conducted on the 11th February via Zoom platforms with more than 200 participants live. The session delivered an introduction to Android Native development with a remarkable engagement of the participants. The second workshop of MADHack was conducted on the 4th of February, 2024 physically with more than 250 participants focusing on different topics namely React Native, Flutter and Code to AppStore (i.e. Deployment).",
       },
     ],
   },
   {
     id: "3",
     slug: "revolux-3-0-web-and-design-summit",
-    title: "Revolux 3.0: UI/UX & Web Design Workshop",
-    date: "Archive / TBA",
-    isoDate: "2026-08-01",
+    title: "RevolUX 3.0",
+    date: "March 2024",
+    isoDate: "2024-03-01",
     readTime: "1 min read",
     author: {
       name: "IEEE Student Branch of UCSC",
     },
-    category: "Workshops",
-    tags: ["Workshops", "Design", "Web"],
+    category: "Design",
+    tags: ["Design", "UI/UX", "Competitions"],
     image: "/images/past-events/revolux-3.0.jpg",
-    imageAlt: "Revolux 3.0 UI/UX and Web Design Workshop",
+    imageAlt: "RevolUX 3.0 UI/UX Designathon",
     description:
-      "Placeholder article for Revolux 3.0. Workshop sessions, speaker insights, and design resources will be updated here.",
+      "RevolUX 3.0 is the third edition of the UI/UX designathon organized by the IEEE Student Branch of UCSC in collaboration with AIESEC in University of Colombo.",
     featured: false,
     content: [
       {
         type: "paragraph",
-        text: "This is a generic placeholder article for Revolux 3.0 organized by the IEEE Student Branch of UCSC. Official session recaps, guest speaker profiles, and workshop materials will be published here.",
+        text: "RevolUX was initiated by the IEEE student branch of UCSC together with AIESEC in University of Colombo after observing the growing interest in the field of UI/UX. The event was conducted in two phases: the preparation phase and competition phase. The initial phase consisted of awareness sessions and workshops. The subsequent phase was consistent of the initial competition round of prototype submission and a 24-hour designathon. The final designathon of RevolUX 3.0 was held on the 2nd of March 2024 as a online 24 hour event with 10 final teams with nearly 40 participating in the competition. The competitors got a kick start at 8 a.m. and concluded their final outcome at 8 a.m. of the following day. Afterwards, the winning three teams were carefully processed by the judge panel and it was announced at the award ceremony.",
       },
     ],
   },
