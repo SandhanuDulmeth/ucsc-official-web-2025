@@ -1,5 +1,6 @@
 import BlogList from "@/components/BlogList";
 import { blogPosts, getAllBlogTags } from "@/data/blogPosts";
+import TextReveal from "@/components/helpers/TextReveal";
 
 export const metadata = {
   title: "Blog & Stories | IEEE Student Branch of UCSC",
@@ -27,7 +28,9 @@ export default function BlogPage() {
           </p>
         </div>
         <h1 className="text-3xl md:text-5xl text-secondary-blue font-semibold leading-tight break-words hyphens-auto">
-          IEEE UCSC Blog
+          <TextReveal selector="blog-title-reveal" delay={0.1}>
+            IEEE UCSC Blog
+          </TextReveal>
         </h1>
         <p className="mt-3 text-secondary-blue/70 max-w-2xl text-base font-light">
           Celebrating technical innovation, student accomplishments, and the spirit of collaboration within the IEEE Student Branch at UCSC.
