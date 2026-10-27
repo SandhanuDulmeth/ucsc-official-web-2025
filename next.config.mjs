@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  basePath: "/ucsc-official-web-2025",
-  assetPrefix: "/ucsc-official-web-2025",
-  trailingSlash: true,
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -19,6 +15,10 @@ const nextConfig = {
       },
     ],
   },
+  assetPrefix: "",
+  basePath: "",
+  output: "export",
+  trailingSlash: true,
 };
 
 export default nextConfig;
