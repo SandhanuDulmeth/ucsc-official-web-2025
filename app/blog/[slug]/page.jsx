@@ -122,6 +122,7 @@ export default async function BlogPostPage({ params }) {
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 1024px"
+              style={post.imagePosition ? { objectPosition: post.imagePosition } : undefined}
               className="object-cover"
             />
           </div>

@@ -35,6 +35,7 @@ const BlogCard = ({
           }
           priority={priority || featured}
           loading={priority || featured ? undefined : "lazy"}
+          style={post.imagePosition ? { objectPosition: post.imagePosition } : undefined}
           className="object-cover group-hover:scale-105 transition-all duration-500 grayscale-0 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0"
         />
         {post.category && (
