@@ -3,7 +3,7 @@ const rawBlogPosts = [
     id: "1",
     slug: "ieee-day-2026-ucsc",
     title:
-      "Celebrating Innovation, Connection, and the Spirit of Engineering: A Complete Look Back at the Unforgettable IEEE Day 2026 at UCSC",
+      "Celebrating Innovation, Connection, and the Spirit of Engineering: A Complete Look Back at the Unforgettable IEEE Day 2026 at UCSC — Empowering Tomorrow's Technologists and Computing Leaders Across Sri Lanka",
     date: "October 17, 2026",
     isoDate: "2026-10-17",
     readTime: "3 min read",

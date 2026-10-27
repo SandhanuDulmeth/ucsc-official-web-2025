@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }) {
             ))}
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-semibold text-secondary-blue leading-tight md:leading-tight break-words hyphens-auto">
+          <h1 className="text-3xl md:text-5xl font-semibold text-secondary-blue leading-tight md:leading-tight break-words [overflow-wrap:anywhere] hyphens-auto">
             {post.title}
           </h1>
 
@@ -255,7 +255,7 @@ export default async function BlogPostPage({ params }) {
                 <FaArrowLeft className="text-[10px] transition-transform duration-200 group-hover:-translate-x-1" />
                 Previous Article
               </span>
-              <p className="font-semibold text-secondary-blue group-hover:text-primary-blue text-sm md:text-base line-clamp-2 break-words transition-colors">
+              <p className="font-semibold text-secondary-blue group-hover:text-primary-blue text-sm md:text-base line-clamp-2 break-words [overflow-wrap:anywhere] transition-colors">
                 {prevPost.title}
               </p>
             </TransitionLink>
@@ -272,7 +272,7 @@ export default async function BlogPostPage({ params }) {
                 Next Article
                 <FaArrowRight className="text-[10px] transition-transform duration-200 group-hover:translate-x-1" />
               </span>
-              <p className="font-semibold text-secondary-blue group-hover:text-primary-blue text-sm md:text-base line-clamp-2 break-words transition-colors">
+              <p className="font-semibold text-secondary-blue group-hover:text-primary-blue text-sm md:text-base line-clamp-2 break-words [overflow-wrap:anywhere] transition-colors">
                 {nextPost.title}
               </p>
             </TransitionLink>

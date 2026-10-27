@@ -45,8 +45,8 @@ const BlogCard = ({
       </div>
 
       {/* Card Content */}
-      <div className="flex flex-col justify-between p-6 md:p-8 flex-1">
-        <div className="space-y-3">
+      <div className="flex flex-col justify-between p-6 md:p-8 flex-1 min-w-0">
+        <div className="space-y-3 min-w-0">
           {/* Metadata: Date and Read Time */}
           <div className="flex flex-wrap items-center gap-3 text-xs text-secondary-blue/70">
             <span className="flex items-center gap-1.5">
@@ -66,14 +66,14 @@ const BlogCard = ({
 
           {/* Title with line-clamp */}
           <HeadingTag
-            className={`font-semibold text-secondary-blue group-hover:text-primary-blue transition-colors duration-200 leading-snug break-words hyphens-auto ${
+            className={`font-semibold text-secondary-blue group-hover:text-primary-blue transition-colors duration-200 leading-snug break-words [overflow-wrap:anywhere] hyphens-auto ${
               featured ? "text-2xl md:text-3xl" : "text-xl"
             } line-clamp-2`}
             title={post.title}
           >
             <TransitionLink
               href={`/blog/${post.slug}`}
-              className="break-words focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs"
+              className="break-words [overflow-wrap:anywhere] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs"
             >
               {post.title}
             </TransitionLink>
@@ -81,7 +81,7 @@ const BlogCard = ({
 
           {/* Excerpt with line-clamp */}
           <p
-            className={`text-secondary-blue/80 font-light leading-relaxed break-words ${
+            className={`text-secondary-blue/80 font-light leading-relaxed break-words [overflow-wrap:anywhere] ${
               featured ? "text-base line-clamp-4" : "text-sm line-clamp-3"
             }`}
           >
