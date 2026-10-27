@@ -15,6 +15,7 @@
 </p>
 
 <p align="center">
+  <a href="https://ucsc-official-web-2025.vercel.app/blog/"><strong>Live Demo (Blog)</strong></a> ·
   <a href="https://ucscieee.lk">Visit the website</a> ·
   <a href="https://www.linkedin.com/company/ucscieeesb/">LinkedIn</a> ·
   <a href="https://www.instagram.com/ucsc.ieee/">Instagram</a> ·
@@ -26,6 +27,8 @@
     <img src="https://github.com/IEEEUCSC/ucsc-official-web-2025/actions/workflows/deploy.yml/badge.svg" alt="GitHub Pages deployment workflow">
   </a>
 </p>
+
+> **Live demo:** [https://ucsc-official-web-2025.vercel.app/blog/](https://ucsc-official-web-2025.vercel.app/blog/)
 
 ## About the website
 
@@ -206,25 +209,22 @@ Chrome 111+, or Firefox 128+; consider browser support when changing the stack.
 ## Implementation Notes
 
 ### Design
-- **Theme Consistency**: Utilizes the branch design tokens (`--color-primary-blue: #05609A`, `--color-secondary-blue: #234961`, `--color-primary-white: #FAFAFA`, `--color-secondary-white: #EBEBEB`) and the custom local font Raveo (`--font-raveo`).
-- **Visual Interactions**: Blog cards mirror the repository's signature grayscale-to-color hover transitions (`grayscale hover:grayscale-0 duration-500`) and subtle card elevation with primary blue brand accents.
-- **Defensive UI & Responsiveness**: Fluid CSS grid scales seamlessly from single-column mobile view to 2- and 3-column desktop viewports.
-- **Long-Title & Content Overflow Handling**: Rather than modifying authentic editorial content to fit arbitrary visual boundaries, the UI defensively handles long titles and irregular strings across viewports using:
-  - **`line-clamp-2`**: Applied to blog card titles (`<HeadingTag className="... line-clamp-2" title={post.title}>`) and adjacent article navigation links (`prevPost` / `nextPost`), restricting display height to two uniform lines to preserve balanced card grids regardless of title length.
-  - **`line-clamp-3` / `line-clamp-4`**: Caps post excerpt descriptions consistently between standard and featured cards.
-  - **`break-words` & `[overflow-wrap:anywhere]`**: Ensures exceptionally long compound words, URLs, or unbroken strings break cleanly onto new lines instead of overflowing containers or pushing grid columns off-screen.
-  - **`hyphens-auto`**: Enables browser-native hyphenation on narrow mobile viewports for natural line wrapping.
-  - **`min-w-0` Flex Constraints**: Applied to card content flex containers (`flex-1 min-w-0`) to prevent standard CSS flexbox auto-minimum width expansion when encountering long strings.
-  - **Tooltip Accessibility**: Preserves full untruncated titles via the HTML `title={post.title}` attribute on clamped headings, allowing mouse and assistive technology users to read complete titles without navigating away.
-  - **Hero Heading Resilience**: Dynamic post pages use `break-words [overflow-wrap:anywhere]` on the `h1` element with responsive font sizes (`text-3xl md:text-5xl`) and `leading-tight` to accommodate multi-line headlines gracefully.
+- **Theme Consistency**: Utilizes branch tokens (`--color-primary-blue`, `--color-secondary-blue`, `--color-primary-white`) alongside the local Raveo font.
+- **Grayscale-to-Color Hover**: Blog cards feature smooth hover transitions from grayscale to full color, mirroring existing site aesthetics.
+- **Defensive Layout**: Fluid CSS grid smoothly scales between mobile (single-column), tablet (2-column), and desktop (3-column) viewports.
+- **Accessible Typography**: Heading tooltips preserve untruncated titles, while high-contrast text ensures comfortable reading across devices.
 
 ### Performance
-- **Static Site Generation (SSG)**: Statically exported via `generateStaticParams()` at build time with zero server runtime overhead or runtime database latency.
-- **Zero Additional Dependencies**: Pure React 19 and Tailwind CSS 4 implementation utilizing native state for search/filtering, maintaining a minimal bundle footprint.
-- **Image Optimization & Layout Stability**: Featured images are compressed and resized from large camera raw assets (11.6 MB raw PNG reduced to 323 KB high-fidelity asset) and served with `loading="lazy"`, responsive aspect ratios, and explicit sizes to eliminate Cumulative Layout Shift (CLS).
+- **Image Priority & Lazy-Loading**: The first card uses `priority` for instant LCP, while other images lazy-load on scroll.
+- **Zero CLS & Layout Stability**: Media containers specify explicit responsive aspect ratios (`aspect-16/10` and `aspect-21/9`) to eliminate Cumulative Layout Shift.
+- **Overflow Resilience**: Uses line-clamp + break-words for long titles and compound strings, preventing visual breakage or reflows.
+- **Static Site Generation (SSG)**: Statically exported via `generateStaticParams()` at build time with zero runtime queries or server overhead.
 
-### Improvements (Proposed Next Feature)
-- **Automated RSS & JSON Feed Generation**: An automated feed generator script hooked into the static build process (`public/feed.xml` and `public/feed.json`) enabling IEEE members, campus aggregators, and tech newsreaders to subscribe to branch publications directly.
+### Improvements
+- **Automated RSS/JSON Feeds**: Generate static XML and JSON feeds (`feed.xml` and `feed.json`) during build time for news syndication.
+- **Combined Category Filtering**: Expand tag filters with multi-category intersections and full-text keyword indexing.
+- **Dynamic Reading Times**: Calculate reading duration dynamically from article word count during build instead of fixed values.
+- **Social Share Integration**: Add native one-click social share dialogs for LinkedIn, X (Twitter), and Facebook on article pages.
 
 ## Contact the branch
 
