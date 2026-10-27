@@ -1,4 +1,4 @@
-export const blogPosts = [
+const rawBlogPosts = [
   {
     id: "1",
     slug: "ieee-day-2026-ucsc",
@@ -111,6 +111,23 @@ export const blogPosts = [
   },
 ];
 
+/**
+ * Returns blog posts sorted newest-first by ISO publication date
+ */
+export const getSortedBlogPosts = (posts = rawBlogPosts) => {
+  return [...posts].sort((a, b) => {
+    const timeA = a.isoDate ? new Date(a.isoDate).getTime() : 0;
+    const timeB = b.isoDate ? new Date(b.isoDate).getTime() : 0;
+    return timeB - timeA;
+  });
+};
+
+export const blogPosts = getSortedBlogPosts(rawBlogPosts);
+
+export const getAllBlogPosts = () => {
+  return blogPosts;
+};
+
 export const getBlogPostBySlug = (slug) => {
   return blogPosts.find((post) => post.slug === slug);
 };
@@ -122,3 +139,4 @@ export const getAllBlogTags = () => {
   });
   return Array.from(tags);
 };
+
