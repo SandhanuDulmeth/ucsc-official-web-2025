@@ -61,12 +61,12 @@ export default async function BlogPostPage({ params }) {
         <div className="mb-8">
           <TransitionLink
             href="/blog"
-            className="inline-flex items-center gap-2 text-primary-blue hover:text-secondary-blue font-semibold text-xs md:text-sm uppercase tracking-wider transition-colors group"
+            className="inline-flex items-center gap-2 text-primary-blue hover:text-secondary-blue font-semibold text-xs md:text-sm uppercase tracking-wider transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs px-2 py-1"
           >
-          <FaArrowLeft className="text-xs transition-transform duration-200 group-hover:-translate-x-1" />
-          <span>Back to all posts</span>
-        </TransitionLink>
-      </div>
+            <FaArrowLeft className="text-xs transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>Back to all posts</span>
+          </TransitionLink>
+        </div>
 
       <article className="space-y-8">
         {/* Post Header */}
@@ -249,7 +249,7 @@ export default async function BlogPostPage({ params }) {
           {prevPost ? (
             <TransitionLink
               href={`/blog/${prevPost.slug}`}
-              className="group flex flex-col p-5 bg-white border border-secondary-white/80 rounded-sm hover:border-primary-blue/50 hover:shadow-sm transition-all duration-200"
+              className="group flex flex-col p-5 bg-white border border-secondary-white/80 rounded-sm hover:border-primary-blue/50 hover:shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue"
             >
               <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-secondary-blue/60 group-hover:text-primary-blue transition-colors mb-1.5">
                 <FaArrowLeft className="text-[10px] transition-transform duration-200 group-hover:-translate-x-1" />
@@ -266,7 +266,7 @@ export default async function BlogPostPage({ params }) {
           {nextPost ? (
             <TransitionLink
               href={`/blog/${nextPost.slug}`}
-              className="group flex flex-col p-5 bg-white border border-secondary-white/80 rounded-sm hover:border-primary-blue/50 hover:shadow-sm transition-all duration-200 text-left md:text-right"
+              className="group flex flex-col p-5 bg-white border border-secondary-white/80 rounded-sm hover:border-primary-blue/50 hover:shadow-sm transition-all duration-200 text-left md:text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue"
             >
               <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-secondary-blue/60 group-hover:text-primary-blue transition-colors mb-1.5 md:justify-end">
                 Next Article
@@ -294,7 +294,11 @@ export default async function BlogPostPage({ params }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedPosts.map((related) => (
-              <BlogCard key={related.id || related.slug} post={related} />
+              <BlogCard
+                key={related.id || related.slug}
+                post={related}
+                headingLevel="h3"
+              />
             ))}
           </div>
         </section>

@@ -61,8 +61,16 @@ const Navbar = () => {
     <>
       <nav className="fixed w-full hidden md:flex gap-6 items-center justify-between px-8 py-2 backdrop-blur-lg z-20 bg-primary-white">
         <div className="">
-          <TransitionLink href="/">
-            <Image src={miniLogo} width={140} height={60} alt="Logo" />
+          <TransitionLink
+            href="/"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs inline-block"
+          >
+            <Image
+              src={miniLogo}
+              width={140}
+              height={60}
+              alt="IEEE UCSC Student Branch Logo"
+            />
           </TransitionLink>
         </div>
 
@@ -81,7 +89,7 @@ const Navbar = () => {
                 href={link}
                 key={index}
                 aria-current={isActive ? "page" : undefined}
-                className={`px-2.5 py-1 rounded-xs transition-all duration-200 ${
+                className={`px-2.5 py-1 rounded-xs transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue ${
                   isActive
                     ? "bg-primary-blue text-primary-white shadow-xs font-semibold"
                     : "hover:bg-primary-blue/10 text-primary-blue"
@@ -97,8 +105,18 @@ const Navbar = () => {
         </div>
 
         <div className="">
-          <Link href={ieeeURL} target="_blank" rel="noreferrer">
-            <Image src={ieeeLogo} width={80} height={40} alt="Logo" />
+          <Link
+            href={ieeeURL}
+            target="_blank"
+            rel="noreferrer"
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs inline-block"
+          >
+            <Image
+              src={ieeeLogo}
+              width={80}
+              height={40}
+              alt="IEEE Global Organization Logo"
+            />
           </Link>
         </div>
       </nav>
@@ -127,7 +145,12 @@ const Navbar = () => {
           </div>
 
           <div className="">
-            <Image src={miniLogo} width={140} height={60} alt="Logo" />
+            <Image
+              src={miniLogo}
+              width={140}
+              height={60}
+              alt="IEEE UCSC Student Branch Logo"
+            />
           </div>
         </div>
 

@@ -2,7 +2,14 @@ import Image from "next/image";
 import TransitionLink from "./helpers/TransitionLink";
 import { FaArrowRight, FaCalendarAlt, FaClock } from "react-icons/fa";
 
-const BlogCard = ({ post, featured = false, priority = false }) => {
+const BlogCard = ({
+  post,
+  featured = false,
+  priority = false,
+  headingLevel = "h2",
+}) => {
+  const HeadingTag = headingLevel === "h3" ? "h3" : "h2";
+
   return (
     <article
       className={`group flex flex-col bg-white border border-secondary-white/80 rounded-sm overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 ${
@@ -58,16 +65,19 @@ const BlogCard = ({ post, featured = false, priority = false }) => {
           </div>
 
           {/* Title with line-clamp */}
-          <h2
+          <HeadingTag
             className={`font-semibold text-secondary-blue group-hover:text-primary-blue transition-colors duration-200 leading-snug break-words hyphens-auto ${
               featured ? "text-2xl md:text-3xl" : "text-xl"
             } line-clamp-2`}
             title={post.title}
           >
-            <TransitionLink href={`/blog/${post.slug}`} className="break-words">
+            <TransitionLink
+              href={`/blog/${post.slug}`}
+              className="break-words focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs"
+            >
               {post.title}
             </TransitionLink>
-          </h2>
+          </HeadingTag>
 
           {/* Excerpt with line-clamp */}
           <p
@@ -97,7 +107,7 @@ const BlogCard = ({ post, featured = false, priority = false }) => {
         <div className="pt-6 mt-4 border-t border-secondary-white/60">
           <TransitionLink
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center gap-2 text-primary-blue font-semibold text-sm uppercase tracking-wide group-hover:gap-3 transition-all duration-200"
+            className="inline-flex items-center gap-2 text-primary-blue font-semibold text-sm uppercase tracking-wide group-hover:gap-3 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xs px-1 py-0.5"
           >
             <span>Read more</span>
             <FaArrowRight className="text-xs transition-transform duration-200 group-hover:translate-x-1" />
