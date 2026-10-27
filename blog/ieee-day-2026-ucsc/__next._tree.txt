@@ -1,6 +1,6 @@
-:HL["/ucsc-official-web-2025/_next/static/chunks/1p22vcnzpfv82.css","style"]
-:HL["/ucsc-official-web-2025/_next/static/media/RaveoVF-s.p.2xse2_et5g551.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/1p22vcnzpfv82.css","style"]
+:HL["/_next/static/media/RaveoVF-s.p.2xse2_et5g551.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"ieee-day-2026-ucsc","s":[]},"h":96,"c":"$Q3"}]]
 1:[["children",{"s":"blog","h":64,"c":"$Q2"}]]
-0:{"b":"oqdzHR6-i1fMnIyMYP_g9","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"aHbW-Nsi0T3LzVf8z5jGz","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
