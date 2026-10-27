@@ -2,7 +2,7 @@ import Image from "next/image";
 import TransitionLink from "./helpers/TransitionLink";
 import { FaArrowRight, FaCalendarAlt, FaClock } from "react-icons/fa";
 
-const BlogCard = ({ post, featured = false }) => {
+const BlogCard = ({ post, featured = false, priority = false }) => {
   return (
     <article
       className={`group flex flex-col bg-white border border-secondary-white/80 rounded-sm overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 ${
@@ -13,7 +13,7 @@ const BlogCard = ({ post, featured = false }) => {
       <div
         className={`relative overflow-hidden bg-secondary-white shrink-0 ${
           featured
-            ? "w-full md:w-1/2 aspect-16/10 md:aspect-auto md:min-h-[340px]"
+            ? "w-full md:w-1/2 aspect-16/10 md:aspect-4/3 lg:aspect-16/10 md:min-h-[340px]"
             : "w-full aspect-16/10"
         }`}
       >
@@ -26,8 +26,9 @@ const BlogCard = ({ post, featured = false }) => {
               ? "(max-width: 768px) 100vw, 50vw"
               : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           }
-          loading="lazy"
-          className="object-cover group-hover:scale-105 group-hover:grayscale-0 grayscale transition-all duration-500"
+          priority={priority || featured}
+          loading={priority || featured ? undefined : "lazy"}
+          className="object-cover group-hover:scale-105 transition-all duration-500 grayscale-0 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0"
         />
         {post.category && (
           <span className="absolute top-3 left-3 bg-primary-blue text-primary-white text-[11px] uppercase tracking-wider font-semibold px-2.5 py-1 rounded-xs shadow-xs">

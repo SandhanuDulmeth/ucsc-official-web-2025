@@ -116,6 +116,7 @@ const BlogList = ({ posts = [], initialTags = [] }) => {
                 key={post.id || post.slug}
                 post={post}
                 featured={isFeatured}
+                priority={index === 0}
               />
             );
           })}
