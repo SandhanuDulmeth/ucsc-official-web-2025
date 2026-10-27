@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }) {
 
         {/* Featured Image */}
         <div className="space-y-2">
-          <div className="relative w-full aspect-16/10 md:aspect-21/9 max-h-[520px] rounded-sm overflow-hidden bg-secondary-white shadow-xs">
+          <div className="relative w-full aspect-16/10 md:aspect-16/10 max-h-[640px] rounded-sm overflow-hidden bg-secondary-white shadow-xs">
             <Image
               src={post.image}
               alt={post.imageAlt || post.title}
@@ -169,7 +169,7 @@ export default async function BlogPostPage({ params }) {
             if (block.type === "image") {
               return (
                 <figure key={idx} className="my-8 space-y-2">
-                  <div className="relative w-full aspect-16/10 md:aspect-21/9 rounded-sm overflow-hidden bg-secondary-white shadow-xs">
+                  <div className="relative w-full aspect-16/10 md:aspect-16/10 rounded-sm overflow-hidden bg-secondary-white shadow-xs">
                     <Image
                       src={block.src}
                       alt={block.alt || block.caption || post.title}
