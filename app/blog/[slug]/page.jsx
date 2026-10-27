@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }) {
             ))}
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-semibold text-secondary-blue leading-tight md:leading-tight">
+          <h1 className="text-3xl md:text-5xl font-semibold text-secondary-blue leading-tight md:leading-tight break-words hyphens-auto">
             {post.title}
           </h1>
 
@@ -128,20 +128,20 @@ export default async function BlogPostPage({ params }) {
         </div>
 
         {/* Full Content */}
-        <div className="prose prose-lg max-w-none text-secondary-blue/90 space-y-6 pt-4 font-light leading-relaxed text-base md:text-lg">
+        <div className="text-secondary-blue/90 space-y-6 pt-4 font-light leading-relaxed text-base md:text-lg">
           {post.content.map((block, idx) => {
             if (block.type === "quote") {
               return (
                 <blockquote
                   key={idx}
-                  className="border-l-4 border-primary-blue pl-6 py-3 my-8 italic text-secondary-blue text-lg md:text-xl font-normal bg-primary-blue/5 rounded-r-xs"
+                  className="border-l-4 border-primary-blue pl-6 py-3 my-8 italic text-secondary-blue text-lg md:text-xl font-normal bg-primary-blue/5 rounded-r-xs break-words"
                 >
                   &ldquo;{block.text}&rdquo;
                 </blockquote>
               );
             }
             return (
-              <p key={idx} className="leading-relaxed">
+              <p key={idx} className="leading-relaxed break-words">
                 {block.text}
               </p>
             );

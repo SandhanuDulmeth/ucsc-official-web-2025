@@ -58,19 +58,19 @@ const BlogCard = ({ post, featured = false }) => {
 
           {/* Title with line-clamp */}
           <h2
-            className={`font-semibold text-secondary-blue group-hover:text-primary-blue transition-colors duration-200 leading-snug ${
+            className={`font-semibold text-secondary-blue group-hover:text-primary-blue transition-colors duration-200 leading-snug break-words hyphens-auto ${
               featured ? "text-2xl md:text-3xl" : "text-xl"
             } line-clamp-2`}
             title={post.title}
           >
-            <TransitionLink href={`/blog/${post.slug}`}>
+            <TransitionLink href={`/blog/${post.slug}`} className="break-words">
               {post.title}
             </TransitionLink>
           </h2>
 
           {/* Excerpt with line-clamp */}
           <p
-            className={`text-secondary-blue/80 font-light leading-relaxed ${
+            className={`text-secondary-blue/80 font-light leading-relaxed break-words ${
               featured ? "text-base line-clamp-4" : "text-sm line-clamp-3"
             }`}
           >

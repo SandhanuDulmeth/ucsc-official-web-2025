@@ -26,7 +26,7 @@ export default function BlogPage() {
             Our Stories & Insights
           </p>
         </div>
-        <h1 className="text-3xl md:text-5xl text-secondary-blue font-semibold leading-tight">
+        <h1 className="text-3xl md:text-5xl text-secondary-blue font-semibold leading-tight break-words hyphens-auto">
           IEEE UCSC Blog
         </h1>
         <p className="mt-3 text-secondary-blue/70 max-w-2xl text-base font-light">
