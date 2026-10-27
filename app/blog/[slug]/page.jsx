@@ -125,15 +125,15 @@ export default async function BlogPostPage({ params }) {
               className="object-cover"
             />
           </div>
-          {post.imageAlt && (
+          {post.imageCaption && (
             <p className="text-xs text-secondary-blue/60 text-center italic pt-1">
-              {post.imageAlt}
+              {post.imageCaption}
             </p>
           )}
         </div>
 
         {/* Full Content */}
-        <div className="text-secondary-blue/90 space-y-6 pt-4 font-light leading-relaxed text-base md:text-lg">
+        <div className="text-secondary-blue space-y-6 pt-4 font-light leading-relaxed text-base md:text-lg">
           {post.content.map((block, idx) => {
             if (block.type === "quote") {
               return (
@@ -203,9 +203,11 @@ export default async function BlogPostPage({ params }) {
                 <p className="font-semibold text-secondary-blue text-sm">
                   {post.author?.name || "IEEE Student Branch of UCSC"}
                 </p>
-                <p className="text-xs text-secondary-blue/70 font-light">
-                  {post.author?.role || "University of Colombo School of Computing"}
-                </p>
+                {post.author?.role && (
+                  <p className="text-xs text-secondary-blue/70 font-light">
+                    {post.author.role}
+                  </p>
+                )}
               </div>
             </div>
 

@@ -208,7 +208,15 @@ Chrome 111+, or Firefox 128+; consider browser support when changing the stack.
 ### Design
 - **Theme Consistency**: Utilizes the branch design tokens (`--color-primary-blue: #05609A`, `--color-secondary-blue: #234961`, `--color-primary-white: #FAFAFA`, `--color-secondary-white: #EBEBEB`) and the custom local font Raveo (`--font-raveo`).
 - **Visual Interactions**: Blog cards mirror the repository's signature grayscale-to-color hover transitions (`grayscale hover:grayscale-0 duration-500`) and subtle card elevation with primary blue brand accents.
-- **Defensive UI & Responsiveness**: Titles and excerpts use `line-clamp-2` and `line-clamp-3` with full-title tooltips to gracefully handle varying lengths. Fluid CSS grid scales seamlessly from single-column mobile view to 2- and 3-column desktop viewports.
+- **Defensive UI & Responsiveness**: Fluid CSS grid scales seamlessly from single-column mobile view to 2- and 3-column desktop viewports.
+- **Long-Title & Content Overflow Handling**: Rather than modifying authentic editorial content to fit arbitrary visual boundaries, the UI defensively handles long titles and irregular strings across viewports using:
+  - **`line-clamp-2`**: Applied to blog card titles (`<HeadingTag className="... line-clamp-2" title={post.title}>`) and adjacent article navigation links (`prevPost` / `nextPost`), restricting display height to two uniform lines to preserve balanced card grids regardless of title length.
+  - **`line-clamp-3` / `line-clamp-4`**: Caps post excerpt descriptions consistently between standard and featured cards.
+  - **`break-words` & `[overflow-wrap:anywhere]`**: Ensures exceptionally long compound words, URLs, or unbroken strings break cleanly onto new lines instead of overflowing containers or pushing grid columns off-screen.
+  - **`hyphens-auto`**: Enables browser-native hyphenation on narrow mobile viewports for natural line wrapping.
+  - **`min-w-0` Flex Constraints**: Applied to card content flex containers (`flex-1 min-w-0`) to prevent standard CSS flexbox auto-minimum width expansion when encountering long strings.
+  - **Tooltip Accessibility**: Preserves full untruncated titles via the HTML `title={post.title}` attribute on clamped headings, allowing mouse and assistive technology users to read complete titles without navigating away.
+  - **Hero Heading Resilience**: Dynamic post pages use `break-words [overflow-wrap:anywhere]` on the `h1` element with responsive font sizes (`text-3xl md:text-5xl`) and `leading-tight` to accommodate multi-line headlines gracefully.
 
 ### Performance
 - **Static Site Generation (SSG)**: Statically exported via `generateStaticParams()` at build time with zero server runtime overhead or runtime database latency.

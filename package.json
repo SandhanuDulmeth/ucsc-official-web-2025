@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && touch out/.nojekyll && touch out/CNAME && echo ucscieee.lk > out/CNAME",
+    "build": "next build && node -e \"require('fs').writeFileSync('out/.nojekyll', ''); require('fs').writeFileSync('out/CNAME', 'ucscieee.lk\\n')\"",
     "start": "next start",
     "lint": "eslint .",
     "deploy": "gh-pages -d out --dotfiles"
