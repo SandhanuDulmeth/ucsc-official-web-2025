@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { FaArrowLeft, FaCalendarAlt, FaClock, FaTag, FaUserCircle } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaCalendarAlt, FaClock, FaTag, FaUserCircle } from "react-icons/fa";
 import TransitionLink from "@/components/helpers/TransitionLink";
-import { blogPosts, getBlogPostBySlug } from "@/data/blogPosts";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import { blogPosts, getBlogPostBySlug, getAdjacentBlogPosts } from "@/data/blogPosts";
 import BlogCard from "@/components/BlogCard";
 
 export async function generateStaticParams() {
@@ -45,19 +46,23 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
+  const { prevPost, nextPost } = getAdjacentBlogPosts(slug);
+
   // Related posts (excluding current post)
   const relatedPosts = blogPosts
     .filter((p) => p.slug !== post.slug)
     .slice(0, 2);
 
   return (
-    <main className="pt-28 pb-24 px-6 md:px-12 lg:px-20 max-w-5xl mx-auto min-h-screen">
-      {/* Back Link to Listing */}
-      <div className="mb-8">
-        <TransitionLink
-          href="/blog"
-          className="inline-flex items-center gap-2 text-primary-blue hover:text-secondary-blue font-semibold text-xs md:text-sm uppercase tracking-wider transition-colors group"
-        >
+    <>
+      <ReadingProgressBar />
+      <main className="pt-28 pb-24 px-6 md:px-12 lg:px-20 max-w-5xl mx-auto min-h-screen">
+        {/* Back Link to Listing */}
+        <div className="mb-8">
+          <TransitionLink
+            href="/blog"
+            className="inline-flex items-center gap-2 text-primary-blue hover:text-secondary-blue font-semibold text-xs md:text-sm uppercase tracking-wider transition-colors group"
+          >
           <FaArrowLeft className="text-xs transition-transform duration-200 group-hover:-translate-x-1" />
           <span>Back to all posts</span>
         </TransitionLink>
@@ -140,6 +145,47 @@ export default async function BlogPostPage({ params }) {
                 </blockquote>
               );
             }
+            if (block.type === "heading") {
+              if (block.level === 3) {
+                return (
+                  <h3
+                    key={idx}
+                    className="text-xl md:text-2xl font-semibold text-secondary-blue pt-4 pb-1 break-words hyphens-auto"
+                  >
+                    {block.text}
+                  </h3>
+                );
+              }
+              return (
+                <h2
+                  key={idx}
+                  className="text-2xl md:text-3xl font-semibold text-secondary-blue pt-6 pb-2 break-words hyphens-auto border-b border-secondary-white/60"
+                >
+                  {block.text}
+                </h2>
+              );
+            }
+            if (block.type === "image") {
+              return (
+                <figure key={idx} className="my-8 space-y-2">
+                  <div className="relative w-full aspect-16/10 md:aspect-21/9 rounded-sm overflow-hidden bg-secondary-white shadow-xs">
+                    <Image
+                      src={block.src}
+                      alt={block.alt || block.caption || post.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  {block.caption && (
+                    <figcaption className="text-xs text-secondary-blue/70 text-center italic pt-1">
+                      {block.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            }
             return (
               <p key={idx} className="leading-relaxed break-words">
                 {block.text}
@@ -194,9 +240,51 @@ export default async function BlogPostPage({ params }) {
         </footer>
       </article>
 
+      {/* Previous / Next Post Navigation */}
+      {(prevPost || nextPost) && (
+        <nav
+          aria-label="Previous and Next Articles"
+          className="my-12 pt-8 border-t border-secondary-white grid grid-cols-1 md:grid-cols-2 gap-4"
+        >
+          {prevPost ? (
+            <TransitionLink
+              href={`/blog/${prevPost.slug}`}
+              className="group flex flex-col p-5 bg-white border border-secondary-white/80 rounded-sm hover:border-primary-blue/50 hover:shadow-sm transition-all duration-200"
+            >
+              <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-secondary-blue/60 group-hover:text-primary-blue transition-colors mb-1.5">
+                <FaArrowLeft className="text-[10px] transition-transform duration-200 group-hover:-translate-x-1" />
+                Previous Article
+              </span>
+              <p className="font-semibold text-secondary-blue group-hover:text-primary-blue text-sm md:text-base line-clamp-2 break-words transition-colors">
+                {prevPost.title}
+              </p>
+            </TransitionLink>
+          ) : (
+            <div className="hidden md:block" />
+          )}
+
+          {nextPost ? (
+            <TransitionLink
+              href={`/blog/${nextPost.slug}`}
+              className="group flex flex-col p-5 bg-white border border-secondary-white/80 rounded-sm hover:border-primary-blue/50 hover:shadow-sm transition-all duration-200 text-left md:text-right"
+            >
+              <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-secondary-blue/60 group-hover:text-primary-blue transition-colors mb-1.5 md:justify-end">
+                Next Article
+                <FaArrowRight className="text-[10px] transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
+              <p className="font-semibold text-secondary-blue group-hover:text-primary-blue text-sm md:text-base line-clamp-2 break-words transition-colors">
+                {nextPost.title}
+              </p>
+            </TransitionLink>
+          ) : (
+            <div className="hidden md:block" />
+          )}
+        </nav>
+      )}
+
       {/* Related Posts Section */}
       {relatedPosts.length > 0 && (
-        <section className="mt-20 pt-12 border-t border-secondary-white space-y-8">
+        <section className="mt-16 pt-12 border-t border-secondary-white space-y-8">
           <div className="flex items-center gap-3">
             <div className="w-6 h-[2px] bg-secondary-blue" />
             <h2 className="uppercase font-semibold text-base text-secondary-blue tracking-wider">
@@ -212,5 +300,6 @@ export default async function BlogPostPage({ params }) {
         </section>
       )}
     </main>
+  </>
   );
 }

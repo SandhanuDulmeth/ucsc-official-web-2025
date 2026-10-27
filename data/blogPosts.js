@@ -36,6 +36,17 @@ const rawBlogPosts = [
         text: "Leveraging technology for the benefit of humanity — united across borders and generations.",
       },
       {
+        type: "heading",
+        level: 2,
+        text: "Keynote Address and Interactive Campus Challenges",
+      },
+      {
+        type: "image",
+        src: "/images/past-events/ieee-day-2022.webp",
+        alt: "IEEE Day celebration gathering at UCSC",
+        caption: "Members and attendees connecting during the interactive sessions.",
+      },
+      {
         type: "paragraph",
         text: "But it wasn't all just talks! The energy in the room peaked during our interactive sessions. Teams battled it out in a hilarious cup-stacking game, and the competitive spirit truly shined during our campus-wide treasure hunt. Of course, all that running around builds up an appetite, so we made sure everyone was fueled up with plenty of great food and beverages to keep the good vibes going.",
       },
@@ -74,6 +85,17 @@ const rawBlogPosts = [
         text: "Following intensive preliminary rounds and mentorship sessions by industry leaders, the finalist teams gathered for an electric 24-hour hackathon, turning concepts into fully functional mobile prototypes.",
       },
       {
+        type: "heading",
+        level: 2,
+        text: "The 24-Hour Grand Finale & Winning Prototypes",
+      },
+      {
+        type: "image",
+        src: "/images/past-events/madhack-end.webp",
+        alt: "MadHack finalist teams presenting their mobile prototypes",
+        caption: "Finalist teams demonstrating their working mobile solutions to the panel of industry judges.",
+      },
+      {
         type: "paragraph",
         text: "Congratulations to all participants and especially the top teams who proved once again that passion and technical excellence thrive within our university ecosystem.",
       },
@@ -102,6 +124,17 @@ const rawBlogPosts = [
       {
         type: "paragraph",
         text: "Revolux 3.0 gathered enthusiastic design minds and web developers from across faculties to bridge the gap between aesthetic design and functional engineering.",
+      },
+      {
+        type: "heading",
+        level: 2,
+        text: "Hands-on Sprints: From Design Systems to Accessible Code",
+      },
+      {
+        type: "image",
+        src: "/images/past-events/revolux-2.webp",
+        alt: "Revolux design sprint workshop session",
+        caption: "Participants collaborating on human-centered UI/UX design systems and accessible frontends.",
       },
       {
         type: "paragraph",
@@ -139,4 +172,23 @@ export const getAllBlogTags = () => {
   });
   return Array.from(tags);
 };
+
+/**
+ * Returns previous (older) and next (newer) post relative to the current slug
+ */
+export const getAdjacentBlogPosts = (slug) => {
+  const currentIndex = blogPosts.findIndex((post) => post.slug === slug);
+  if (currentIndex === -1) {
+    return { prevPost: null, nextPost: null };
+  }
+
+  // blogPosts is sorted newest-first:
+  // Older chronological post is at currentIndex + 1
+  // Newer chronological post is at currentIndex - 1
+  const prevPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+  const nextPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
+
+  return { prevPost, nextPost };
+};
+
 
