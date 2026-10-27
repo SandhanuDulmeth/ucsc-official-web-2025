@@ -1,6 +1,5 @@
 import ParallaxImages from "./helpers/ParallaxImages";
 import TextReveal from "./helpers/TextReveal";
-import Image from "next/image";
 
 const Hero = () => {
   return (

@@ -5,7 +5,6 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedin,
-  FaMailBulk,
 } from "react-icons/fa";
 
 const TeamMembers = ({ title, members }) => {
@@ -27,7 +26,7 @@ const TeamMembers = ({ title, members }) => {
                 width={1200}
                 height={1200}
                 alt={member.name}
-                className="md:w-[230px] md:h-[350px] w-[180px] h-[200px] object-cover grayscale hover:grayscale-0  transition-all duration-600 ease-in-out "
+                className="w-full max-w-[180px] h-[200px] md:w-[230px] md:h-[350px] object-cover grayscale hover:grayscale-0 transition-all duration-600 ease-in-out"
               />
               <div className="md:text-base text-xs">
                 <p className="font-medium text-secondary-blue">{member.name}</p>

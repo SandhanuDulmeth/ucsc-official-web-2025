@@ -26,6 +26,9 @@
     width: 100vw !important;
 }
 
+html,
 body {
+    overflow-x: hidden;
     transition: background-color 0.5s ease-in-out;
-  }
+}
+
