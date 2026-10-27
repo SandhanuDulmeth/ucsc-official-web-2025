@@ -14,19 +14,19 @@ export const navbarLinks = [
   },
   {
     name: "about us",
-    link: "#about-us",
+    link: "/#about-us",
   },
   {
     name: "what we do",
-    link: "#what-we-do",
+    link: "/#what-we-do",
   },
   {
     name: "timeline",
-    link: "#timeline",
+    link: "/#timeline",
   },
   {
     name: "past events",
-    link: "#past-events",
+    link: "/#past-events",
   },
   {
     name: "blog",

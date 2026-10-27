@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import TransitionLink from "./helpers/TransitionLink";
 import { ieeeURL, navbarLinks } from "@/utils";
@@ -13,6 +14,22 @@ import ieeeLogo from "@/public/logo-ieee-blue.svg";
 const Navbar = () => {
   const [isOpened, setIsOpended] = useState(false);
   const mobileNav = useRef(null);
+  const pathname = usePathname();
+
+  // Scroll to hash target on the homepage after transition completes
+  useEffect(() => {
+    if (pathname === "/" && typeof window !== "undefined" && window.location.hash) {
+      const hash = window.location.hash;
+      const timer = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
   const handleClick = () => {
     if (!isOpened) {
       gsap.fromTo(
@@ -49,16 +66,31 @@ const Navbar = () => {
           </TransitionLink>
         </div>
 
-        <div className="flex gap-6 py-2 px-6 items-center justify-center text-primary-blue uppercase font-semibold">
-          {navbarLinks.map(({ name, link }, index) => (
-            <TransitionLink
-              href={link}
-              key={index}
-              className="hover:bg-primary-blue/10 px-1 py-1 rounded-sm transition-color duration-200"
-            >
-              {name}
-            </TransitionLink>
-          ))}
+        <div className="flex gap-4 lg:gap-6 py-2 px-4 lg:px-6 items-center justify-center text-primary-blue uppercase font-semibold">
+          {navbarLinks.map(({ name, link }, index) => {
+            const isBlog = link === "/blog";
+            const isHome = link === "/";
+            const isActive = isBlog
+              ? pathname?.startsWith("/blog")
+              : isHome
+              ? pathname === "/"
+              : false;
+
+            return (
+              <TransitionLink
+                href={link}
+                key={index}
+                aria-current={isActive ? "page" : undefined}
+                className={`px-2.5 py-1 rounded-xs transition-all duration-200 ${
+                  isActive
+                    ? "bg-primary-blue text-primary-white shadow-xs font-semibold"
+                    : "hover:bg-primary-blue/10 text-primary-blue"
+                }`}
+              >
+                {name}
+              </TransitionLink>
+            );
+          })}
 
           <DropDown />
           <ContactButton />
@@ -102,46 +134,61 @@ const Navbar = () => {
         <div
           ref={mobileNav}
           style={{ clipPath: "inset(0 0 100% 0)" }}
-          className="fixed top-16 bg-primary-white w-full flex flex-col px-4 py-8"
+          className="fixed top-16 bg-primary-white w-full flex flex-col px-4 py-8 space-y-2"
         >
-          {navbarLinks.map(({ name, link }, index) => (
-            <div key={link} onClick={handleClick}>
-              <TransitionLink
-                href={link}
-                className="hover:bg-primary-blue/10 px-1 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold text-xl"
-              >
-                {name}
-              </TransitionLink>
-            </div>
-          ))}
-          <div className="mb-2 text-xl">
-            <p className=" px-1 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold">
+          {navbarLinks.map(({ name, link }) => {
+            const isBlog = link === "/blog";
+            const isHome = link === "/";
+            const isActive = isBlog
+              ? pathname?.startsWith("/blog")
+              : isHome
+              ? pathname === "/"
+              : false;
+
+            return (
+              <div key={link} onClick={handleClick}>
+                <TransitionLink
+                  href={link}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`px-3 py-1.5 rounded-xs transition-colors duration-200 uppercase font-semibold text-xl inline-block ${
+                    isActive
+                      ? "bg-primary-blue text-primary-white shadow-xs"
+                      : "hover:bg-primary-blue/10 text-primary-blue"
+                  }`}
+                >
+                  {name}
+                </TransitionLink>
+              </div>
+            );
+          })}
+          <div className="mb-2 text-xl pt-2">
+            <p className="px-3 py-1 rounded-sm uppercase text-secondary-blue font-semibold text-sm tracking-wider">
               Our team
             </p>
-            <div className="ml-4 flex flex-col">
+            <div className="ml-2 flex flex-col space-y-1">
               <div onClick={handleClick}>
                 <TransitionLink
-                  href="#current-team"
-                  className="hover:bg-primary-blue/10 px-1 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold text-lg"
+                  href="/#current-team"
+                  className="hover:bg-primary-blue/10 px-3 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold text-base"
                 >
-                  - Current Team
+                  Current Team
                 </TransitionLink>
               </div>
               <div onClick={handleClick}>
                 <TransitionLink
                   href="/previous-officers"
-                  className="hover:bg-primary-blue/10 px-1 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold text-lg"
+                  className="hover:bg-primary-blue/10 px-3 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold text-base"
                 >
-                  - Previous Officers
+                  Previous Officers
                 </TransitionLink>
               </div>
             </div>
           </div>
 
-          <div onClick={handleClick}>
+          <div onClick={handleClick} className="pt-2">
             <TransitionLink
-              href="#contact"
-              className="hover:bg-primary-blue/10 px-1 py-1 rounded-sm transition-color duration-200 uppercase text-primary-blue font-semibold text-xl"
+              href="/#contact-us"
+              className="hover:bg-primary-blue/10 px-3 py-1.5 rounded-xs transition-color duration-200 uppercase text-primary-blue font-semibold text-xl inline-block"
             >
               Contact us
             </TransitionLink>
@@ -206,16 +253,18 @@ const DropDown = () => {
         </svg>
       </span>
       <div
-        className="absolute -bottom-24 -left-1 w-[180px] bg-[#E3EBF0] px-2 py-2 rounded-sm space-y-2"
+        className="absolute -bottom-24 -left-1 w-[180px] bg-[#E3EBF0] px-2 py-2 rounded-sm space-y-2 shadow-md z-30"
         ref={box}
         style={{ clipPath: "inset(0 0 100% 0)" }}
       >
         <div className="">
-          <TransitionLink href="#current-team">Current Team</TransitionLink>
+          <TransitionLink href="/#current-team" className="block hover:text-secondary-blue py-1">
+            Current Team
+          </TransitionLink>
         </div>
 
         <div>
-          <TransitionLink href="/previous-officers">
+          <TransitionLink href="/previous-officers" className="block hover:text-secondary-blue py-1">
             Previous Officers
           </TransitionLink>
         </div>
@@ -227,7 +276,7 @@ const DropDown = () => {
 const ContactButton = () => {
   return (
     <TransitionLink
-      href="#contact-us"
+      href="/#contact-us"
       className="border border-primary-blue text-primary-blue hover:bg-primary-blue/10 px-2 py-1 rounded-sm"
     >
       contact us
