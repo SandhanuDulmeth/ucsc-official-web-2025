@@ -3,4 +3,4 @@
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"ieee-day-2026-ucsc","s":[]},"h":96,"c":"$Q3"}]]
 1:[["children",{"s":"blog","h":64,"c":"$Q2"}]]
-0:{"b":"tZfr1-eDTtmUJtuxjP00X","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"kCMsiLxPg84PFdhHUpdEA","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
