@@ -2,7 +2,7 @@
   <a href="https://ucscieee.lk">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="public/logo-white.svg">
-      <img src="public/logo-blue.svg" alt="UCSC IEEE Student Branch" width="360">
+      <img src="public/logo-blue.svg" alt="UCSC IEEE Student Branch " width="360">
     </picture>
   </a>
 </p>
