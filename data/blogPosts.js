@@ -14,7 +14,7 @@ const rawBlogPosts = [
     tags: ["Events", "Community", "IEEE Day"],
     image: "/images/blog/ieee-day.jpg",
     imageAlt: "IEEE Day 2026 celebration in E401 Lecture Hall at UCSC",
-    imagePosition: "center 35%",
+    imagePosition: "center 65%",
     description:
       "For those who might be new to our community, IEEE Day is a massive global celebration commemorating the first time engineers and professionals worldwide gathered to share technical ideas back in 1884.",
     featured: true,
